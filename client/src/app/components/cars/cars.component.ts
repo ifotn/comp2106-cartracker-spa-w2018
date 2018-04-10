@@ -16,6 +16,7 @@ export class CarsComponent implements OnInit {
   model: string;
   year: number;
   colour: string;
+  _id: string;
 
   // list all cars by calling the service
   getCars(): void {
@@ -39,11 +40,45 @@ export class CarsComponent implements OnInit {
     });
   }
 
+  // delete a car using its _id
+  deleteCar(_id): void {
+    if (confirm('Are you sure???')) {
+      this.carService.deleteCar(_id).subscribe(response => {
+        this.getCars();
+      });
+    }
+  }
+
+  // update a car
+  updateCar(): void {
+    let car = {
+      _id: this._id,
+      make: this.make,
+      model: this.model,
+      year: this.year,
+      colour: this.colour
+    };
+
+    this.carService.updateCar(car).subscribe(response => {
+      this.getCars();
+      this.clearForm();
+    });
+  }
+
   clearForm(): void {
     this.make = null;
     this.model = null;
     this.year = null;
     this.colour = null;
+    this._id = null;
+  }
+
+  selectCar(car): void {
+    this.make = car.make;
+    this.model = car.model;
+    this.year = car.year;
+    this.colour = car.colour;
+    this._id = car._id;
   }
 
   ngOnInit() {

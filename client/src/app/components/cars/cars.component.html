@@ -4,21 +4,24 @@
 <section>
   <fieldset class="form-group">
     <label class="control-label col-md-2" for="make">Make: *</label>
-    <input name="make" id="make" required [ngModel]="make" />
+    <input name="make" id="make" required [(ngModel)]="make" />
   </fieldset>
   <fieldset class="form-group">
     <label class="control-label col-md-2" for="model">Model: *</label>
-    <input name="model" id="model" required [ngModel]="model" />
+    <input name="model" id="model" required [(ngModel)]="model" />
   </fieldset>
   <fieldset class="form-group">
     <label class="control-label col-md-2" for="year">Year: *</label>
-    <input name="year" id="year" required type="number" min="1900" [ngModel]="year" />
+    <input name="year" id="year" required type="number" min="1900" [(ngModel)]="year" />
   </fieldset>
   <fieldset class="form-group">
     <label class="control-label col-md-2" for="colour">Colour:</label>
-    <input name="colour" id="colour" [ngModel]="colour" />
+    <input name="colour" id="colour" [(ngModel)]="colour" />
   </fieldset>
-  <button class="offset-2 btn btn-primary" (click)="addCar()">Save</button>
+  <button class="offset-2 btn btn-primary" (click)="addCar()" *ngIf="!_id">Add</button>
+  <button class="offset-2 btn btn-primary" (click)="updateCar()" *ngIf="_id">Update</button>
+  <button class="btn btn-primary" (click)="clearForm()">Reset</button>
+  <input type="hidden" name="_id" [(ngModel)]="_id" />
 </section>
 
 <section>
@@ -29,12 +32,17 @@
       <th>Model</th>
       <th>Year</th>
       <th>Colour</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let car of cars">
       <td>{{ car.make }}</td>
       <td>{{ car.model }}</td>
       <td>{{ car.year }}</td>
       <td>{{ car.colour }}</td>
+      <td>
+        <a class="btn btn-primary" (click)="selectCar(car)">Edit</a>
+        <a class="btn btn-danger" (click)="deleteCar(car._id)">Delete</a>
+      </td>
     </tr>
 
   </table>

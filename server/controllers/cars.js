@@ -44,40 +44,25 @@ router.post('/', (req, res, next) => {
    }) ;
 });
 
-// GET: /cars/delete/abc123
-router.get('/delete/:_id', (req, res, next) => {
+// DELETE: /cars/abc123
+router.delete('/:_id', (req, res, next) => {
     // get the _id parameter from the url and store in a local variable
     let _id = req.params._id;
 
     // use the Car model to delete the document with this id
-    Car.remove({ _id: _id }, (err) => {
+    Car.remove({ _id: _id }, (err, car) => {
        if (err) {
            console.log(err);
+           res.json(err).status(501);
        }
        else {
-           res.redirect('/cars');
+           res.json(car).status(200);
        }
     });
 });
 
-// GET: /cars/edit/abc123
-router.get('/edit/:_id', (req, res, next) => {
-   // get _id param from url
-   let _id = req.params._id;
-
-   // use the Car model to find the selected document
-    Car.findById(_id, (err, car) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.json(car);
-        }
-    });
-});
-
-// POST: /cars/edit/abc123
-router.post('/edit/:_id', (req, res, next) => {
+// PUT: /cars/abc123
+router.put('/:_id', (req, res, next) => {
    // get the _id from the url
    let _id = req.params._id;
 
@@ -88,12 +73,12 @@ router.post('/edit/:_id', (req, res, next) => {
                model: req.body.model,
                year: req.body.year,
                colour: req.body.colour
-           }}, null, (err) => {
+           }}, null, (err, car) => {
         if (err) {
-            console.log(err);
+            res.json(err).status(501);
         }
         else {
-            res.redirect('/cars');
+            res.json(car).status(204);
         }
        });
 });

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { CarsComponent } from './components/cars/cars.component';
@@ -13,7 +14,7 @@ import { CarService } from "./services/car.service";
     AppComponent, CarsComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule, FormsModule
   ],
   providers: [CarService],
   bootstrap: [CarsComponent]

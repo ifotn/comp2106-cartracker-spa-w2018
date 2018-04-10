@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+const globals = require( '../../../../config/globals');
+
+let headers = new HttpHeaders();
+headers.append('Content-Type', 'application/json');
 
 @Injectable()
 export class CarService {
@@ -10,7 +14,11 @@ export class CarService {
 
   // GET - retrieve all cars from API
   getCars() {
-    return this.http.get('http://localhost:3000/cars');
+    return this.http.get(globals.apiServer + 'cars');
   }
 
+  // POST - add a new car through the API
+  addCar(newCar) {
+    return this.http.post(globals.apiServer + 'cars', newCar, { headers: headers });
+  }
 }

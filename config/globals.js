@@ -8,5 +8,5 @@ module.exports = {
         //googleCallbackUrl: 'http://localhost:3000/google/callback'
         googleCallbackUrl: 'https://comp2106-cartracker.herokuapp.com/google/callback'
     },
-    'apiServer': 'http://localhost:3000'
+    'apiServer': 'http://localhost:3000/'
 };

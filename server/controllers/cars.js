@@ -24,11 +24,10 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// POST: /cars/add
-router.post('/add', (req, res, next) => {
-   // use the Car model to save the new cart
-
-Car.create({
+// POST: /cars
+router.post('/', (req, res, next) => {
+   // use the Car model to save the new car
+    Car.create({
        make: req.body.make,
        model: req.body.model,
        year: req.body.year,
@@ -39,7 +38,7 @@ Car.create({
            return res.json(err).status(501);
        }
        else {
-           conole.log(car);
+           console.log(car);
            res.json(car).status(201);
        }
    }) ;

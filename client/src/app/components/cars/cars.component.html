@@ -1,10 +1,41 @@
 <h1>Car Tracker</h1>
 
-<table class="table table-striped table-hover">
-  <tr>
-    <th>Make</th>
-    <th>Model</th>
-    <th>Year</th>
-    <th>Colour</th>
-  </tr>
-</table>
+<h2>Car Details</h2>
+<section>
+  <fieldset class="form-group">
+    <label class="control-label col-md-2" for="make">Make: *</label>
+    <input name="make" id="make" required [ngModel]="make" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label class="control-label col-md-2" for="model">Model: *</label>
+    <input name="model" id="model" required [ngModel]="model" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label class="control-label col-md-2" for="year">Year: *</label>
+    <input name="year" id="year" required type="number" min="1900" [ngModel]="year" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label class="control-label col-md-2" for="colour">Colour:</label>
+    <input name="colour" id="colour" [ngModel]="colour" />
+  </fieldset>
+  <button class="offset-2 btn btn-primary" (click)="addCar()">Save</button>
+</section>
+
+<section>
+  <h2>Car Inventory</h2>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Colour</th>
+    </tr>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.make }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{ car.colour }}</td>
+    </tr>
+
+  </table>
+</section>

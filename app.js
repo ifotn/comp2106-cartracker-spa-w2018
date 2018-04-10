@@ -15,7 +15,7 @@ const cars = require('./server/controllers/cars');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'client/views'));
+app.set('views', path.join(__dirname, 'client'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 

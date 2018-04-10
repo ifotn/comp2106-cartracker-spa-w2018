@@ -1,21 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { CarComponent} from "../components/car.component";
-import { AutosComponent } from '../components/autos/autos.component';
-import { AutoService} from "./services/auto.service";
-import { HttpClientModule} from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { CarsComponent } from './components/cars/cars.component';
+
+// reference cars service
+import { CarService } from "./services/car.service";
 
 @NgModule({
   declarations: [
-    AppComponent, CarComponent, AutosComponent
+    AppComponent, CarsComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule
+    BrowserModule, HttpClientModule
   ],
-  providers: [AutoService],
-  bootstrap: [AutosComponent]
+  providers: [CarService],
+  bootstrap: [CarsComponent]
 })
 export class AppModule { }

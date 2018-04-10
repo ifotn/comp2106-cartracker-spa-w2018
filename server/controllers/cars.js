@@ -3,6 +3,14 @@ const express = require('express');
 const router = express.Router();
 const Car = require('../models/car');
 
+// allow CORS header to accept requests from localhost:4200
+router.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+   next();
+});
+
 // GET: /cars
 router.get('/', (req, res, next) => {
     // get car documents from db
